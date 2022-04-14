@@ -6,10 +6,11 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Launch Current File",
+            "name": "Launch Game",
             "request": "launch",
-            "mainClass": "${file}",
-            "vmArgs": "--module-path \"C:/Program Files/Java/javafx-sdk-18/lib\"--add-modules javafx.controls,javafx.fxml"
+            "mainClass": "Game",
+            "projectName": "TileGame_215d516e",
+            "vmArgs": "--module-path \"C:/Program Files/Java/javafx-sdk-18/lib\" --add-modules=javafx.controls"
         }
     ]
 }
