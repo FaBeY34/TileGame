@@ -32,5 +32,4 @@ public class Pipe {
     public void setDirection(String direction) {
         this.direction = direction;
     }
-
 }
