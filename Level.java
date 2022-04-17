@@ -331,6 +331,7 @@ public class Level {
         findStarterAndEndCell();
         determineWhereToMove();
         // checkLevelCompleted();
+        
         // if level completed is true
         if (isLevelCompleted) {
             // add circle on pane and create animation
@@ -785,624 +786,624 @@ public class Level {
         }
     }
 
-    // public void checkLevelCompleted() {
-    //     // control comeFromCell and movingToCell is null or not
-    //     if (comeFromCell != null && movingToCell != null) {
+    public void checkLevelCompleted() {
+        // control comeFromCell and movingToCell is null or not
+        if (comeFromCell != null && movingToCell != null) {
 
-    //         System.out.println("comeFromCell " + comeFromCell.getCellId());
-    //         System.out.println("Current Cell " + movingToCell.getCellId());
+            System.out.println("comeFromCell " + comeFromCell.getCellId());
+            System.out.println("Current Cell " + movingToCell.getCellId());
 
-    //         // determine movingToCell type
-    //         switch (movingToCell.getProperty()) {
-    //             case "Vertical":
-    //                 // if the ball is coming from up
-    //                 if (comeFromCell.getCellId() == movingToCell.getCellId() - 4) {
-    //                     // determine the next path is appropriate or not
-    //                     if (getCell(movingToCell.getCellId() + 4).getProperty().equals("00")
-    //                             || getCell(movingToCell.getCellId() + 4).getProperty().equals("01")
-    //                             || getCell(movingToCell.getCellId() + 4).getProperty().equals("Vertical")) {
-    //                         temp = movingToCell;
-    //                         movingToCell = getCell(movingToCell.getCellId() + 4);
-    //                         comeFromCell = temp;
-    //                         // determine and create the coordinate and path for animation
-    //                         if (movingToCell.getProperty().equals("00") && path != null) {
-    //                             mY += 200;
-    //                             lY += 100;
-    //                             hX -= 100;
+            // determine movingToCell type
+            switch (movingToCell.getProperty()) {
+                case "Vertical":
+                    // if the ball is coming from up
+                    if (comeFromCell.getCellId() + 4 == movingToCell.getCellId()) {
+                        // determine the next path is appropriate or not
+                        if (getCell(movingToCell.getCellId() + 4).getProperty().equals("00")
+                                || getCell(movingToCell.getCellId() + 4).getProperty().equals("01")
+                                || getCell(movingToCell.getCellId() + 4).getProperty().equals("Vertical")) {
+                            temp = movingToCell;
+                            movingToCell = getCell(movingToCell.getCellId() + 4);
+                            comeFromCell = temp;
+                            // determine and create the coordinate and path for animation
+                            if (movingToCell.getProperty().equals("00") && path != null) {
+                                mY += 200;
+                                lY += 100;
+                                hX -= 100;
 
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new LineTo(lX, lY));
-    //                             path.getElements().add(new HLineTo(hX));
-    //                             lX -= 100;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new LineTo(lX, lY));
+                                path.getElements().add(new HLineTo(hX));
+                                lX -= 100;
 
-    //                         }
-    //                         if (movingToCell.getProperty().equals("01") && path != null) {
-    //                             mY += 200;
-    //                             lY += 100;
-    //                             hX += 100;
+                            }
+                            if (movingToCell.getProperty().equals("01") && path != null) {
+                                mY += 200;
+                                lY += 100;
+                                hX += 100;
 
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new LineTo(lX, lY));
-    //                             path.getElements().add(new HLineTo(hX));
-    //                             lX += 100;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new LineTo(lX, lY));
+                                path.getElements().add(new HLineTo(hX));
+                                lX += 100;
 
-    //                         }
-    //                         if (movingToCell.getProperty().equals("Vertical") && path != null) {
-    //                             mY += 200;
-    //                             lY += 200;
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new LineTo(lX, lY));
+                            }
+                            if (movingToCell.getProperty().equals("Vertical") && path != null) {
+                                mY += 200;
+                                lY += 200;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new LineTo(lX, lY));
 
-    //                         }
-    //                     } else {
-    //                         return;
-    //                     }
-    //                 }
+                            }
+                        } else {
+                            return;
+                        }
+                    }
 
-    //                 // if the ball is coming from down
-    //                 if (comeFromCell.getCellId() == movingToCell.getCellId() + 4) {
-    //                     // determine the next path is appropriate or not
-    //                     if (getCell(movingToCell.getCellId() - 4).getProperty().equals("11")
-    //                             || getCell(movingToCell.getCellId() - 4).getProperty().equals("10")
-    //                             || getCell(movingToCell.getCellId() - 4).getProperty().equals("Vertical")) {
-    //                         temp = movingToCell;
-    //                         movingToCell = getCell(movingToCell.getCellId() - 4);
-    //                         comeFromCell = temp;
-    //                         // determine and create the coordinate and path for animation
-    //                         if (movingToCell.getProperty().equals("11") && path != null) {
-    //                             mY -= 200;
-    //                             lY -= 100;
-    //                             hX += 100;
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new LineTo(lX, lY));
-    //                             path.getElements().add(new HLineTo(hX));
-    //                             lX += 100;
+                    // if the ball is coming from down
+                    if (comeFromCell.getCellId() == movingToCell.getCellId() + 4) {
+                        // determine the next path is appropriate or not
+                        if (getCell(movingToCell.getCellId() - 4).getProperty().equals("11")
+                                || getCell(movingToCell.getCellId() - 4).getProperty().equals("10")
+                                || getCell(movingToCell.getCellId() - 4).getProperty().equals("Vertical")) {
+                            temp = movingToCell;
+                            movingToCell = getCell(movingToCell.getCellId() - 4);
+                            comeFromCell = temp;
+                            // determine and create the coordinate and path for animation
+                            if (movingToCell.getProperty().equals("11") && path != null) {
+                                mY -= 200;
+                                lY -= 100;
+                                hX += 100;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new LineTo(lX, lY));
+                                path.getElements().add(new HLineTo(hX));
+                                lX += 100;
 
-    //                         }
-    //                         if (movingToCell.getProperty().equals("10") && path != null) {
-    //                             mY -= 200;
-    //                             lY -= 100;
-    //                             hX -= 100;
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new LineTo(lX, lY));
-    //                             path.getElements().add(new HLineTo(hX));
-    //                             lX -= 100;
+                            }
+                            if (movingToCell.getProperty().equals("10") && path != null) {
+                                mY -= 200;
+                                lY -= 100;
+                                hX -= 100;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new LineTo(lX, lY));
+                                path.getElements().add(new HLineTo(hX));
+                                lX -= 100;
 
-    //                         }
-    //                         if (movingToCell.getProperty().equals("Vertical") && path != null) {
-    //                             if (movingToCell.getType().equals("Pipe")
-    //                                     || movingToCell.getType().equals("PipeStatic")) {
-    //                                 mY -= 200;
-    //                                 lY -= 200;
-    //                                 path.getElements().add(new MoveTo(mX, mY));
-    //                                 path.getElements().add(new LineTo(lX, lY));
-    //                             }
-    //                             if (movingToCell.getType().equals("End")) {
-    //                                 mY -= 200;
-    //                                 lY -= 70;
-    //                                 path.getElements().add(new MoveTo(mX, mY));
-    //                                 path.getElements().add(new LineTo(lX, lY));
+                            }
+                            if (movingToCell.getProperty().equals("Vertical") && path != null) {
+                                if (movingToCell.getType().equals("Pipe")
+                                        || movingToCell.getType().equals("PipeStatic")) {
+                                    mY -= 200;
+                                    lY -= 200;
+                                    path.getElements().add(new MoveTo(mX, mY));
+                                    path.getElements().add(new LineTo(lX, lY));
+                                }
+                                if (movingToCell.getType().equals("End")) {
+                                    mY -= 200;
+                                    lY -= 70;
+                                    path.getElements().add(new MoveTo(mX, mY));
+                                    path.getElements().add(new LineTo(lX, lY));
 
-    //                             }
-    //                         }
-    //                     } else {
-    //                         return;
-    //                     }
-    //                 }
-    //                 break;
+                                }
+                            }
+                        } else {
+                            return;
+                        }
+                    }
+                    break;
 
-    //             case "Horizontal":
-    //                 // if the ball is coming from left
-    //                 if (comeFromCell.getCellId() == movingToCell.getCellId() - 1) {
-    //                     // determine the next path is appropriate or not
-    //                     if (getCell(movingToCell.getCellId() + 1).getProperty().equals("00")
-    //                             || getCell(movingToCell.getCellId() + 1).getProperty().equals("10")
-    //                             || getCell(movingToCell.getCellId() + 1).getProperty().equals("Horizontal")) {
-    //                         temp = movingToCell;
-    //                         movingToCell = getCell(movingToCell.getCellId() + 1);
-    //                         comeFromCell = temp;
-    //                         // determine and create the coordinate and path for animation
-    //                         if (movingToCell.getProperty().equals("00") && path != null) {
-    //                             System.out.println(lX);
-    //                             mX += 200;
-    //                             hX += 100;
-    //                             lX += 100;
-    //                             lY -= 100;
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new HLineTo(hX));
-    //                             path.getElements().add(new LineTo(lX, lY));
+                case "Horizontal":
+                    // if the ball is coming from left
+                    if (comeFromCell.getCellId() == movingToCell.getCellId() - 1) {
+                        // determine the next path is appropriate or not
+                        if (getCell(movingToCell.getCellId() + 1).getProperty().equals("00")
+                                || getCell(movingToCell.getCellId() + 1).getProperty().equals("10")
+                                || getCell(movingToCell.getCellId() + 1).getProperty().equals("Horizontal")) {
+                            temp = movingToCell;
+                            movingToCell = getCell(movingToCell.getCellId() + 1);
+                            comeFromCell = temp;
+                            // determine and create the coordinate and path for animation
+                            if (movingToCell.getProperty().equals("00") && path != null) {
+                                System.out.println(lX);
+                                mX += 200;
+                                hX += 100;
+                                lX += 100;
+                                lY -= 100;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new HLineTo(hX));
+                                path.getElements().add(new LineTo(lX, lY));
 
-    //                         }
-    //                         if (movingToCell.getProperty().equals("10") && path != null) {
-    //                             mX += 200;
-    //                             hX += 100;
-    //                             lX += 100;
-    //                             lY += 100;
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new HLineTo(hX));
-    //                             path.getElements().add(new LineTo(lX, lY));
+                            }
+                            if (movingToCell.getProperty().equals("10") && path != null) {
+                                mX += 200;
+                                hX += 100;
+                                lX += 100;
+                                lY += 100;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new HLineTo(hX));
+                                path.getElements().add(new LineTo(lX, lY));
 
-    //                         }
-    //                         if (movingToCell.getProperty().equals("Horizontal") && path != null) {
-    //                             if (movingToCell.getType().equals("Pipe")
-    //                                     || movingToCell.getType().equals("PipeStatic")) {
-    //                                 mX += 200;
-    //                                 hX += 200;
-    //                                 path.getElements().add(new MoveTo(mX, mY));
-    //                                 path.getElements().add(new HLineTo(hX));
-    //                                 lX += 200;
-    //                             }
-    //                             if (movingToCell.getType().equals("End")) {
-    //                                 mX += 200;
-    //                                 hX += 70;
-    //                                 path.getElements().add(new MoveTo(mX, mY));
-    //                                 path.getElements().add(new HLineTo(hX));
+                            }
+                            if (movingToCell.getProperty().equals("Horizontal") && path != null) {
+                                if (movingToCell.getType().equals("Pipe")
+                                        || movingToCell.getType().equals("PipeStatic")) {
+                                    mX += 200;
+                                    hX += 200;
+                                    path.getElements().add(new MoveTo(mX, mY));
+                                    path.getElements().add(new HLineTo(hX));
+                                    lX += 200;
+                                }
+                                if (movingToCell.getType().equals("End")) {
+                                    mX += 200;
+                                    hX += 70;
+                                    path.getElements().add(new MoveTo(mX, mY));
+                                    path.getElements().add(new HLineTo(hX));
 
-    //                             }
-    //                         }
-    //                     } else {
-    //                         return;
-    //                     }
-    //                 }
+                                }
+                            }
+                        } else {
+                            return;
+                        }
+                    }
 
-    //                 // if the ball is coming from right
-    //                 if (comeFromCell.getCellId() == movingToCell.getCellId() + 1) {
-    //                     // determine the next path is appropriate or not
-    //                     if (getCell(movingToCell.getCellId() - 1).getProperty().equals("01")
-    //                             || getCell(movingToCell.getCellId() - 1).getProperty().equals("11")
-    //                             || getCell(movingToCell.getCellId() - 1).getProperty().equals("Horizontal")) {
-    //                         temp = movingToCell;
-    //                         movingToCell = getCell(movingToCell.getCellId() - 1);
-    //                         comeFromCell = temp;
-    //                         // determine and create the coordinate and path for animation
-    //                         if (movingToCell.getProperty().equals("11") && path != null) {
-    //                             mX -= 200;
-    //                             hX -= 100;
-    //                             lX -= 100;
-    //                             lY += 100;
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new HLineTo(hX));
-    //                             path.getElements().add(new LineTo(lX, lY));
+                    // if the ball is coming from right
+                    if (comeFromCell.getCellId() == movingToCell.getCellId() + 1) {
+                        // determine the next path is appropriate or not
+                        if (getCell(movingToCell.getCellId() - 1).getProperty().equals("01")
+                                || getCell(movingToCell.getCellId() - 1).getProperty().equals("11")
+                                || getCell(movingToCell.getCellId() - 1).getProperty().equals("Horizontal")) {
+                            temp = movingToCell;
+                            movingToCell = getCell(movingToCell.getCellId() - 1);
+                            comeFromCell = temp;
+                            // determine and create the coordinate and path for animation
+                            if (movingToCell.getProperty().equals("11") && path != null) {
+                                mX -= 200;
+                                hX -= 100;
+                                lX -= 100;
+                                lY += 100;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new HLineTo(hX));
+                                path.getElements().add(new LineTo(lX, lY));
 
-    //                         }
-    //                         if (movingToCell.getProperty().equals("01") && path != null) {
-    //                             mX -= 200;
-    //                             hX -= 100;
-    //                             lX -= 100;
-    //                             lY -= 100;
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new HLineTo(hX));
-    //                             path.getElements().add(new LineTo(lX, lY));
-    //                         }
-    //                         if (movingToCell.getProperty().equals("Horizontal") && path != null) {
-    //                             mX -= 200;
-    //                             hX -= 200;
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new HLineTo(hX));
-    //                             lX -= 200;
-    //                         }
-    //                     } else {
-    //                         return;
-    //                     }
-    //                 }
-    //                 break;
+                            }
+                            if (movingToCell.getProperty().equals("01") && path != null) {
+                                mX -= 200;
+                                hX -= 100;
+                                lX -= 100;
+                                lY -= 100;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new HLineTo(hX));
+                                path.getElements().add(new LineTo(lX, lY));
+                            }
+                            if (movingToCell.getProperty().equals("Horizontal") && path != null) {
+                                mX -= 200;
+                                hX -= 200;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new HLineTo(hX));
+                                lX -= 200;
+                            }
+                        } else {
+                            return;
+                        }
+                    }
+                    break;
 
-    //             case "00":
-    //                 // if the ball is coming from up
-    //                 if (comeFromCell.getCellId() == movingToCell.getCellId() - 4) {
-    //                     // determine the next path is appropriate or not
-    //                     if (getCell(movingToCell.getCellId() - 1).getProperty().equals("01")
-    //                             || getCell(movingToCell.getCellId() - 1).getProperty().equals("11")
-    //                             || getCell(movingToCell.getCellId() - 1).getProperty().equals("Horizontal")) {
-    //                         temp = movingToCell;
-    //                         movingToCell = getCell(movingToCell.getCellId() - 1);
-    //                         comeFromCell = temp;
-    //                         // determine and create the coordinate and path for animation
-    //                         if (movingToCell.getProperty().equals("11") && path != null) {
-    //                             mX -= 100;
-    //                             mY += 100;
-    //                             hX -= 100;
-    //                             lX -= 100;
-    //                             lY += 100;
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new HLineTo(hX));
-    //                             path.getElements().add(new LineTo(lX, lY));
+                case "00":
+                    // if the ball is coming from up
+                    if (comeFromCell.getCellId() == movingToCell.getCellId() - 4) {
+                        // determine the next path is appropriate or not
+                        if (getCell(movingToCell.getCellId() - 1).getProperty().equals("01")
+                                || getCell(movingToCell.getCellId() - 1).getProperty().equals("11")
+                                || getCell(movingToCell.getCellId() - 1).getProperty().equals("Horizontal")) {
+                            temp = movingToCell;
+                            movingToCell = getCell(movingToCell.getCellId() - 1);
+                            comeFromCell = temp;
+                            // determine and create the coordinate and path for animation
+                            if (movingToCell.getProperty().equals("11") && path != null) {
+                                mX -= 100;
+                                mY += 100;
+                                hX -= 100;
+                                lX -= 100;
+                                lY += 100;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new HLineTo(hX));
+                                path.getElements().add(new LineTo(lX, lY));
 
-    //                         }
-    //                         if (movingToCell.getProperty().equals("01") && path != null) {
-    //                             mX -= 100;
-    //                             mY += 100;
-    //                             hX -= 100;
-    //                             lX -= 100;
-    //                             lY -= 100;
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new HLineTo(hX));
-    //                             path.getElements().add(new LineTo(lX, lY));
-    //                         }
-    //                         if (movingToCell.getProperty().equals("Horizontal") && path != null) {
-    //                             mX -= 100;
-    //                             mY += 100;
-    //                             hX -= 200;
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new HLineTo(hX));
-    //                             lX -= 200;
-    //                         }
-    //                     } else {
-    //                         return;
-    //                     }
-    //                 }
+                            }
+                            if (movingToCell.getProperty().equals("01") && path != null) {
+                                mX -= 100;
+                                mY += 100;
+                                hX -= 100;
+                                lX -= 100;
+                                lY -= 100;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new HLineTo(hX));
+                                path.getElements().add(new LineTo(lX, lY));
+                            }
+                            if (movingToCell.getProperty().equals("Horizontal") && path != null) {
+                                mX -= 100;
+                                mY += 100;
+                                hX -= 200;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new HLineTo(hX));
+                                lX -= 200;
+                            }
+                        } else {
+                            return;
+                        }
+                    }
 
-    //                 // if the ball is coming from left
-    //                 if (comeFromCell.getCellId() == movingToCell.getCellId() - 1) {
-    //                     // determine the next path is appropriate or not
-    //                     if (getCell(movingToCell.getCellId() - 4).getProperty().equals("10")
-    //                             || getCell(movingToCell.getCellId() - 4).getProperty().equals("11")
-    //                             || getCell(movingToCell.getCellId() - 4).getProperty().equals("Vertical")) {
-    //                         temp = movingToCell;
-    //                         movingToCell = getCell(movingToCell.getCellId() - 4);
-    //                         comeFromCell = temp;
-    //                         // determine and create the coordinate and path for animation
-    //                         if (movingToCell.getProperty().equals("10") && path != null) {
-    //                             mX += 100;
-    //                             mY -= 100;
-    //                             lY -= 100;
-    //                             hX -= 100;
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new LineTo(lX, lY));
-    //                             path.getElements().add(new HLineTo(hX));
-    //                             lX -= 100;
+                    // if the ball is coming from left
+                    if (comeFromCell.getCellId() == movingToCell.getCellId() - 1) {
+                        // determine the next path is appropriate or not
+                        if (getCell(movingToCell.getCellId() - 4).getProperty().equals("10")
+                                || getCell(movingToCell.getCellId() - 4).getProperty().equals("11")
+                                || getCell(movingToCell.getCellId() - 4).getProperty().equals("Vertical")) {
+                            temp = movingToCell;
+                            movingToCell = getCell(movingToCell.getCellId() - 4);
+                            comeFromCell = temp;
+                            // determine and create the coordinate and path for animation
+                            if (movingToCell.getProperty().equals("10") && path != null) {
+                                mX += 100;
+                                mY -= 100;
+                                lY -= 100;
+                                hX -= 100;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new LineTo(lX, lY));
+                                path.getElements().add(new HLineTo(hX));
+                                lX -= 100;
 
-    //                         }
-    //                         if (movingToCell.getProperty().equals("11") && path != null) {
-    //                             mX += 100;
-    //                             mY -= 100;
-    //                             lY -= 100;
-    //                             hX += 100;
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new LineTo(lX, lY));
-    //                             path.getElements().add(new HLineTo(hX));
-    //                             lX += 100;
-    //                         }
-    //                         if (movingToCell.getProperty().equals("Vertical") && path != null) {
-    //                             if (movingToCell.getType().equals("Pipe")
-    //                                     || movingToCell.getType().equals("PipeStatic")) {
-    //                                 mX += 100;
-    //                                 mY -= 100;
-    //                                 lY -= 200;
+                            }
+                            if (movingToCell.getProperty().equals("11") && path != null) {
+                                mX += 100;
+                                mY -= 100;
+                                lY -= 100;
+                                hX += 100;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new LineTo(lX, lY));
+                                path.getElements().add(new HLineTo(hX));
+                                lX += 100;
+                            }
+                            if (movingToCell.getProperty().equals("Vertical") && path != null) {
+                                if (movingToCell.getType().equals("Pipe")
+                                        || movingToCell.getType().equals("PipeStatic")) {
+                                    mX += 100;
+                                    mY -= 100;
+                                    lY -= 200;
 
-    //                                 path.getElements().add(new MoveTo(mX, mY));
-    //                                 path.getElements().add(new LineTo(lX, lY));
-    //                             }
-    //                             if (movingToCell.getType().equals("End")) {
-    //                                 mX += 100;
-    //                                 mY -= 100;
-    //                                 lY -= 70;
-    //                                 path.getElements().add(new MoveTo(mX, mY));
-    //                                 path.getElements().add(new LineTo(lX, lY));
+                                    path.getElements().add(new MoveTo(mX, mY));
+                                    path.getElements().add(new LineTo(lX, lY));
+                                }
+                                if (movingToCell.getType().equals("End")) {
+                                    mX += 100;
+                                    mY -= 100;
+                                    lY -= 70;
+                                    path.getElements().add(new MoveTo(mX, mY));
+                                    path.getElements().add(new LineTo(lX, lY));
 
-    //                             }
+                                }
 
-    //                         }
-    //                     } else {
-    //                         return;
-    //                     }
-    //                 }
-    //                 break;
+                            }
+                        } else {
+                            return;
+                        }
+                    }
+                    break;
 
-    //             case "01":
-    //                 // if the ball is coming from up
-    //                 if (comeFromCell.getCellId() == movingToCell.getCellId() - 4) {
-    //                     // determine the next path is appropriate or not
-    //                     if (getCell(movingToCell.getCellId() + 1).getProperty().equals("00")
-    //                             || getCell(movingToCell.getCellId() + 1).getProperty().equals("10")
-    //                             || getCell(movingToCell.getCellId() + 1).getProperty().equals("Horizontal")) {
-    //                         temp = movingToCell;
-    //                         movingToCell = getCell(movingToCell.getCellId() + 1);
-    //                         comeFromCell = temp;
-    //                         // determine and create the coordinate and path for animation
-    //                         if (movingToCell.getProperty().equals("10") && path != null) {
-    //                             mX += 100;
-    //                             mY += 100;
-    //                             hX += 100;
-    //                             lX += 100;
-    //                             lY += 100;
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new HLineTo(hX));
-    //                             path.getElements().add(new LineTo(lX, lY));
+                case "01":
+                    // if the ball is coming from up
+                    if (comeFromCell.getCellId() == movingToCell.getCellId() - 4) {
+                        // determine the next path is appropriate or not
+                        if (getCell(movingToCell.getCellId() + 1).getProperty().equals("00")
+                                || getCell(movingToCell.getCellId() + 1).getProperty().equals("10")
+                                || getCell(movingToCell.getCellId() + 1).getProperty().equals("Horizontal")) {
+                            temp = movingToCell;
+                            movingToCell = getCell(movingToCell.getCellId() + 1);
+                            comeFromCell = temp;
+                            // determine and create the coordinate and path for animation
+                            if (movingToCell.getProperty().equals("10") && path != null) {
+                                mX += 100;
+                                mY += 100;
+                                hX += 100;
+                                lX += 100;
+                                lY += 100;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new HLineTo(hX));
+                                path.getElements().add(new LineTo(lX, lY));
 
-    //                         }
-    //                         if (movingToCell.getProperty().equals("00") && path != null) {
-    //                             mX += 100;
-    //                             mY += 100;
-    //                             hX += 100;
-    //                             lX += 100;
-    //                             lY -= 100;
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new HLineTo(hX));
-    //                             path.getElements().add(new LineTo(lX, lY));
+                            }
+                            if (movingToCell.getProperty().equals("00") && path != null) {
+                                mX += 100;
+                                mY += 100;
+                                hX += 100;
+                                lX += 100;
+                                lY -= 100;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new HLineTo(hX));
+                                path.getElements().add(new LineTo(lX, lY));
 
-    //                         }
-    //                         if (movingToCell.getProperty().equals("Horizontal") && path != null) {
-    //                             if (movingToCell.getType().equals("Pipe")
-    //                                     || movingToCell.getType().equals("PipeStatic")) {
-    //                                 mX += 100;
-    //                                 mY += 100;
-    //                                 hX += 200;
-    //                                 path.getElements().add(new MoveTo(mX, mY));
-    //                                 path.getElements().add(new HLineTo(hX));
-    //                                 lX += 200;
-    //                             }
-    //                             if (movingToCell.getType().equals("End")) {
-    //                                 mX += 100;
-    //                                 mY += 100;
-    //                                 hX += 70;
-    //                                 path.getElements().add(new MoveTo(mX, mY));
-    //                                 path.getElements().add(new HLineTo(hX));
+                            }
+                            if (movingToCell.getProperty().equals("Horizontal") && path != null) {
+                                if (movingToCell.getType().equals("Pipe")
+                                        || movingToCell.getType().equals("PipeStatic")) {
+                                    mX += 100;
+                                    mY += 100;
+                                    hX += 200;
+                                    path.getElements().add(new MoveTo(mX, mY));
+                                    path.getElements().add(new HLineTo(hX));
+                                    lX += 200;
+                                }
+                                if (movingToCell.getType().equals("End")) {
+                                    mX += 100;
+                                    mY += 100;
+                                    hX += 70;
+                                    path.getElements().add(new MoveTo(mX, mY));
+                                    path.getElements().add(new HLineTo(hX));
 
-    //                             }
-    //                         }
-    //                     } else {
-    //                         return;
-    //                     }
-    //                 }
+                                }
+                            }
+                        } else {
+                            return;
+                        }
+                    }
 
-    //                 // if the ball is coming from right
-    //                 if (comeFromCell.getCellId() == movingToCell.getCellId() + 1) {
-    //                     // determine the next path is appropriate or not
-    //                     if (getCell(movingToCell.getCellId() - 4).getProperty().equals("10")
-    //                             || getCell(movingToCell.getCellId() - 4).getProperty().equals("11")
-    //                             || getCell(movingToCell.getCellId() - 4).getProperty().equals("Vertical")) {
-    //                         temp = movingToCell;
-    //                         movingToCell = getCell(movingToCell.getCellId() - 4);
-    //                         comeFromCell = temp;
-    //                         // determine and create the coordinate and path for animation
-    //                         if (movingToCell.getProperty().equals("10") && path != null) {
-    //                             mX -= 100;
-    //                             mY -= 100;
-    //                             lY -= 100;
-    //                             hX -= 100;
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new LineTo(lX, lY));
-    //                             path.getElements().add(new HLineTo(-100));
-    //                             lX -= 100;
+                    // if the ball is coming from right
+                    if (comeFromCell.getCellId() == movingToCell.getCellId() + 1) {
+                        // determine the next path is appropriate or not
+                        if (getCell(movingToCell.getCellId() - 4).getProperty().equals("10")
+                                || getCell(movingToCell.getCellId() - 4).getProperty().equals("11")
+                                || getCell(movingToCell.getCellId() - 4).getProperty().equals("Vertical")) {
+                            temp = movingToCell;
+                            movingToCell = getCell(movingToCell.getCellId() - 4);
+                            comeFromCell = temp;
+                            // determine and create the coordinate and path for animation
+                            if (movingToCell.getProperty().equals("10") && path != null) {
+                                mX -= 100;
+                                mY -= 100;
+                                lY -= 100;
+                                hX -= 100;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new LineTo(lX, lY));
+                                path.getElements().add(new HLineTo(-100));
+                                lX -= 100;
 
-    //                         }
-    //                         if (movingToCell.getProperty().equals("11") && path != null) {
-    //                             mX -= 100;
-    //                             mY -= 100;
-    //                             lY -= 100;
-    //                             hX += 100;
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new LineTo(lX, lY));
-    //                             path.getElements().add(new HLineTo(-100));
-    //                             lX += 100;
-    //                         }
-    //                         if (movingToCell.getProperty().equals("Vertical") && path != null) {
-    //                             if (movingToCell.getType().equals("Pipe")
-    //                                     || movingToCell.getType().equals("PipeStatic")) {
-    //                                 mX -= 100;
-    //                                 mY -= 100;
-    //                                 lY -= 200;
-    //                                 path.getElements().add(new MoveTo(mX, mY));
-    //                                 path.getElements().add(new LineTo(lX, lY));
+                            }
+                            if (movingToCell.getProperty().equals("11") && path != null) {
+                                mX -= 100;
+                                mY -= 100;
+                                lY -= 100;
+                                hX += 100;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new LineTo(lX, lY));
+                                path.getElements().add(new HLineTo(-100));
+                                lX += 100;
+                            }
+                            if (movingToCell.getProperty().equals("Vertical") && path != null) {
+                                if (movingToCell.getType().equals("Pipe")
+                                        || movingToCell.getType().equals("PipeStatic")) {
+                                    mX -= 100;
+                                    mY -= 100;
+                                    lY -= 200;
+                                    path.getElements().add(new MoveTo(mX, mY));
+                                    path.getElements().add(new LineTo(lX, lY));
 
-    //                             }
-    //                             if (movingToCell.getType().equals("End")) {
-    //                                 mX -= 100;
-    //                                 mY -= 100;
-    //                                 lY -= 70;
-    //                                 path.getElements().add(new MoveTo(mX, mY));
-    //                                 path.getElements().add(new LineTo(lX, lY));
+                                }
+                                if (movingToCell.getType().equals("End")) {
+                                    mX -= 100;
+                                    mY -= 100;
+                                    lY -= 70;
+                                    path.getElements().add(new MoveTo(mX, mY));
+                                    path.getElements().add(new LineTo(lX, lY));
 
-    //                             }
-    //                         }
-    //                     } else {
-    //                         return;
-    //                     }
-    //                 }
-    //                 break;
+                                }
+                            }
+                        } else {
+                            return;
+                        }
+                    }
+                    break;
 
-    //             case "10":
-    //                 // if the ball is coming from left
-    //                 if (comeFromCell.getCellId() == movingToCell.getCellId() - 1) {
-    //                     // determine the next path is appropriate or not
-    //                     if (getCell(movingToCell.getCellId() + 4).getProperty().equals("00")
-    //                             || getCell(movingToCell.getCellId() + 4).getProperty().equals("01")
-    //                             || getCell(movingToCell.getCellId() + 4).getProperty().equals("Vertical")) {
-    //                         temp = movingToCell;
-    //                         movingToCell = getCell(movingToCell.getCellId() + 4);
-    //                         comeFromCell = temp;
-    //                         // determine and create the coordinate and path for animation
-    //                         if (movingToCell.getProperty().equals("00") && path != null) {
-    //                             mX += 100;
-    //                             mY += 100;
-    //                             lY += 100;
-    //                             hX -= 100;
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new LineTo(lX, lY));
-    //                             path.getElements().add(new HLineTo(hX));
-    //                             lX -= 100;
-    //                         }
-    //                         if (movingToCell.getProperty().equals("01") && path != null) {
-    //                             mX += 100;
-    //                             mY += 100;
-    //                             lY += 100;
-    //                             hX += 100;
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new LineTo(lX, lY));
-    //                             path.getElements().add(new HLineTo(hX));
-    //                             lX += 100;
+                case "10":
+                    // if the ball is coming from left
+                    if (comeFromCell.getCellId() == movingToCell.getCellId() - 1) {
+                        // determine the next path is appropriate or not
+                        if (getCell(movingToCell.getCellId() + 4).getProperty().equals("00")
+                                || getCell(movingToCell.getCellId() + 4).getProperty().equals("01")
+                                || getCell(movingToCell.getCellId() + 4).getProperty().equals("Vertical")) {
+                            temp = movingToCell;
+                            movingToCell = getCell(movingToCell.getCellId() + 4);
+                            comeFromCell = temp;
+                            // determine and create the coordinate and path for animation
+                            if (movingToCell.getProperty().equals("00") && path != null) {
+                                mX += 100;
+                                mY += 100;
+                                lY += 100;
+                                hX -= 100;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new LineTo(lX, lY));
+                                path.getElements().add(new HLineTo(hX));
+                                lX -= 100;
+                            }
+                            if (movingToCell.getProperty().equals("01") && path != null) {
+                                mX += 100;
+                                mY += 100;
+                                lY += 100;
+                                hX += 100;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new LineTo(lX, lY));
+                                path.getElements().add(new HLineTo(hX));
+                                lX += 100;
 
-    //                         }
-    //                         if (movingToCell.getProperty().equals("Vertical") && path != null) {
-    //                             mX += 100;
-    //                             mY += 100;
-    //                             lY += 200;
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new LineTo(lX, lY));
-    //                         }
-    //                     } else {
-    //                         return;
-    //                     }
-    //                 }
+                            }
+                            if (movingToCell.getProperty().equals("Vertical") && path != null) {
+                                mX += 100;
+                                mY += 100;
+                                lY += 200;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new LineTo(lX, lY));
+                            }
+                        } else {
+                            return;
+                        }
+                    }
 
-    //                 // if the ball is coming from down
-    //                 if (comeFromCell.getCellId() == movingToCell.getCellId() + 4) {
-    //                     // determine the next path is appropriate or not
-    //                     if (getCell(movingToCell.getCellId() - 1).getProperty().equals("01")
-    //                             || getCell(movingToCell.getCellId() - 1).getProperty().equals("11")
-    //                             || getCell(movingToCell.getCellId() - 1).getProperty().equals("Horizontal")) {
-    //                         temp = movingToCell;
-    //                         movingToCell = getCell(movingToCell.getCellId() - 1);
-    //                         comeFromCell = temp;
-    //                         // determine and create the coordinate and path for animation
-    //                         if (movingToCell.getProperty().equals("01") && path != null) {
-    //                             mX -= 100;
-    //                             mY -= 100;
-    //                             hX -= 100;
-    //                             lX -= 100;
-    //                             lY -= 100;
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new HLineTo(hX));
-    //                             path.getElements().add(new LineTo(lX, lY));
-    //                         }
-    //                         if (movingToCell.getProperty().equals("11") && path != null) {
-    //                             mX -= 100;
-    //                             mY -= 100;
-    //                             hX -= 100;
-    //                             lX -= 100;
-    //                             lY += 100;
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new HLineTo(hX));
-    //                             path.getElements().add(new LineTo(lX, lY));
+                    // if the ball is coming from down
+                    if (comeFromCell.getCellId() == movingToCell.getCellId() + 4) {
+                        // determine the next path is appropriate or not
+                        if (getCell(movingToCell.getCellId() - 1).getProperty().equals("01")
+                                || getCell(movingToCell.getCellId() - 1).getProperty().equals("11")
+                                || getCell(movingToCell.getCellId() - 1).getProperty().equals("Horizontal")) {
+                            temp = movingToCell;
+                            movingToCell = getCell(movingToCell.getCellId() - 1);
+                            comeFromCell = temp;
+                            // determine and create the coordinate and path for animation
+                            if (movingToCell.getProperty().equals("01") && path != null) {
+                                mX -= 100;
+                                mY -= 100;
+                                hX -= 100;
+                                lX -= 100;
+                                lY -= 100;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new HLineTo(hX));
+                                path.getElements().add(new LineTo(lX, lY));
+                            }
+                            if (movingToCell.getProperty().equals("11") && path != null) {
+                                mX -= 100;
+                                mY -= 100;
+                                hX -= 100;
+                                lX -= 100;
+                                lY += 100;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new HLineTo(hX));
+                                path.getElements().add(new LineTo(lX, lY));
 
-    //                         }
-    //                         if (movingToCell.getProperty().equals("Horizontal") && path != null) {
-    //                             mX -= 100;
-    //                             mY -= 100;
-    //                             hX -= 200;
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new HLineTo(hX));
-    //                             lX -= 200;
-    //                         }
-    //                     } else {
-    //                         return;
-    //                     }
-    //                 }
-    //                 break;
+                            }
+                            if (movingToCell.getProperty().equals("Horizontal") && path != null) {
+                                mX -= 100;
+                                mY -= 100;
+                                hX -= 200;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new HLineTo(hX));
+                                lX -= 200;
+                            }
+                        } else {
+                            return;
+                        }
+                    }
+                    break;
 
-    //             case "11":
-    //                 // if the ball is coming from down
-    //                 if (comeFromCell.getCellId() == movingToCell.getCellId() + 4) {
-    //                     // determine the next path is appropriate or not
-    //                     if (getCell(movingToCell.getCellId() + 1).getProperty().equals("00")
-    //                             || getCell(movingToCell.getCellId() + 1).getProperty().equals("10")
-    //                             || getCell(movingToCell.getCellId() + 1).getProperty().equals("Horizontal")) {
-    //                         temp = movingToCell;
-    //                         movingToCell = getCell(movingToCell.getCellId() + 1);
-    //                         comeFromCell = temp;
-    //                         // determine and create the coordinate and path for animation
-    //                         if (movingToCell.getProperty().equals("00") && path != null) {
-    //                             mX += 100;
-    //                             mY -= 100;
-    //                             hX += 100;
-    //                             lX += 100;
-    //                             lY -= 100;
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new HLineTo(hX));
-    //                             path.getElements().add(new LineTo(lX, lY));
+                case "11":
+                    // if the ball is coming from down
+                    if (comeFromCell.getCellId() == movingToCell.getCellId() + 4) {
+                        // determine the next path is appropriate or not
+                        if (getCell(movingToCell.getCellId() + 1).getProperty().equals("00")
+                                || getCell(movingToCell.getCellId() + 1).getProperty().equals("10")
+                                || getCell(movingToCell.getCellId() + 1).getProperty().equals("Horizontal")) {
+                            temp = movingToCell;
+                            movingToCell = getCell(movingToCell.getCellId() + 1);
+                            comeFromCell = temp;
+                            // determine and create the coordinate and path for animation
+                            if (movingToCell.getProperty().equals("00") && path != null) {
+                                mX += 100;
+                                mY -= 100;
+                                hX += 100;
+                                lX += 100;
+                                lY -= 100;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new HLineTo(hX));
+                                path.getElements().add(new LineTo(lX, lY));
 
-    //                         }
-    //                         if (movingToCell.getProperty().equals("10") && path != null) {
-    //                             mX += 100;
-    //                             mY -= 100;
-    //                             hX += 100;
-    //                             lX += 100;
-    //                             lY += 100;
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new HLineTo(hX));
-    //                             path.getElements().add(new LineTo(lX, lY));
+                            }
+                            if (movingToCell.getProperty().equals("10") && path != null) {
+                                mX += 100;
+                                mY -= 100;
+                                hX += 100;
+                                lX += 100;
+                                lY += 100;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new HLineTo(hX));
+                                path.getElements().add(new LineTo(lX, lY));
 
-    //                         }
-    //                         if (movingToCell.getProperty().equals("Horizontal") && path != null) {
-    //                             if (movingToCell.getType().equals("Pipe")
-    //                                     || movingToCell.getType().equals("PipeStatic")) {
-    //                                 mX += 100;
-    //                                 mY -= 100;
-    //                                 hX += 200;
-    //                                 path.getElements().add(new MoveTo(mX, mY));
-    //                                 path.getElements().add(new HLineTo(hX));
-    //                                 lX += 200;
-    //                             }
-    //                             if (movingToCell.getType().equals("End")) {
-    //                                 mX += 100;
-    //                                 mY -= 100;
-    //                                 hX += 70;
-    //                                 path.getElements().add(new MoveTo(mX, mY));
-    //                                 path.getElements().add(new HLineTo(hX));
+                            }
+                            if (movingToCell.getProperty().equals("Horizontal") && path != null) {
+                                if (movingToCell.getType().equals("Pipe")
+                                        || movingToCell.getType().equals("PipeStatic")) {
+                                    mX += 100;
+                                    mY -= 100;
+                                    hX += 200;
+                                    path.getElements().add(new MoveTo(mX, mY));
+                                    path.getElements().add(new HLineTo(hX));
+                                    lX += 200;
+                                }
+                                if (movingToCell.getType().equals("End")) {
+                                    mX += 100;
+                                    mY -= 100;
+                                    hX += 70;
+                                    path.getElements().add(new MoveTo(mX, mY));
+                                    path.getElements().add(new HLineTo(hX));
 
-    //                             }
-    //                         }
-    //                     } else {
-    //                         return;
-    //                     }
-    //                 }
+                                }
+                            }
+                        } else {
+                            return;
+                        }
+                    }
 
-    //                 // if the ball is coming from right
-    //                 if (comeFromCell.getCellId() == movingToCell.getCellId() + 1) {
-    //                     // determine the next path is appropriate or not
-    //                     if (getCell(movingToCell.getCellId() + 4).getProperty().equals("00")
-    //                             || getCell(movingToCell.getCellId() + 4).getProperty().equals("01")
-    //                             || getCell(movingToCell.getCellId() + 4).getProperty().equals("Vertical")) {
-    //                         temp = movingToCell;
-    //                         movingToCell = getCell(movingToCell.getCellId() + 4);
-    //                         comeFromCell = temp;
-    //                         // determine and create the coordinate and path for animation
-    //                         if (movingToCell.getProperty().equals("00") && path != null) {
-    //                             mX -= 100;
-    //                             mY += 100;
-    //                             lY += 100;
-    //                             hX -= 100;
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new LineTo(lX, lY));
-    //                             path.getElements().add(new HLineTo(hX));
-    //                             lX -= 100;
-    //                         }
-    //                         if (movingToCell.getProperty().equals("01") && path != null) {
-    //                             mX -= 100;
-    //                             mY += 100;
-    //                             lY += 100;
-    //                             hX += 100;
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new LineTo(lX, lY));
-    //                             path.getElements().add(new HLineTo(hX));
-    //                             lX += 100;
+                    // if the ball is coming from right
+                    if (comeFromCell.getCellId() == movingToCell.getCellId() + 1) {
+                        // determine the next path is appropriate or not
+                        if (getCell(movingToCell.getCellId() + 4).getProperty().equals("00")
+                                || getCell(movingToCell.getCellId() + 4).getProperty().equals("01")
+                                || getCell(movingToCell.getCellId() + 4).getProperty().equals("Vertical")) {
+                            temp = movingToCell;
+                            movingToCell = getCell(movingToCell.getCellId() + 4);
+                            comeFromCell = temp;
+                            // determine and create the coordinate and path for animation
+                            if (movingToCell.getProperty().equals("00") && path != null) {
+                                mX -= 100;
+                                mY += 100;
+                                lY += 100;
+                                hX -= 100;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new LineTo(lX, lY));
+                                path.getElements().add(new HLineTo(hX));
+                                lX -= 100;
+                            }
+                            if (movingToCell.getProperty().equals("01") && path != null) {
+                                mX -= 100;
+                                mY += 100;
+                                lY += 100;
+                                hX += 100;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new LineTo(lX, lY));
+                                path.getElements().add(new HLineTo(hX));
+                                lX += 100;
 
-    //                         }
-    //                         if (movingToCell.getProperty().equals("Vertical") && path != null) {
-    //                             mX -= 100;
-    //                             mY += 100;
-    //                             lY += 200;
-    //                             path.getElements().add(new MoveTo(mX, mY));
-    //                             path.getElements().add(new LineTo(lX, lY));
-    //                         }
-    //                     } else {
-    //                         return;
-    //                     }
-    //                 }
-    //                 break;
-    //         }
-    //         if (movingToCell.getCellId() == endCell.getCellId()) {
-    //             System.out.println("Moving to Cell: " + movingToCell.getCellId());
-    //             System.out.println("End Cell: " + endCell.getCellId());
-    //             isLevelCompleted = true;
-    //             System.out.println(isLevelCompleted);
-    //         } else {
-    //             checkLevelCompleted();
-    //         }
-    //     } else {
-    //         return;
-    //     }
+                            }
+                            if (movingToCell.getProperty().equals("Vertical") && path != null) {
+                                mX -= 100;
+                                mY += 100;
+                                lY += 200;
+                                path.getElements().add(new MoveTo(mX, mY));
+                                path.getElements().add(new LineTo(lX, lY));
+                            }
+                        } else {
+                            return;
+                        }
+                    }
+                    break;
+            }
+            if (movingToCell.getCellId() == endCell.getCellId()) {
+                System.out.println("Moving to Cell: " + movingToCell.getCellId());
+                System.out.println("End Cell: " + endCell.getCellId());
+                isLevelCompleted = true;
+                System.out.println(isLevelCompleted);
+            } else {
+                checkLevelCompleted();
+            }
+        } else {
+            return;
+        }
 
-    // }
+    }
 }
