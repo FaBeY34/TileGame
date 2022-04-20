@@ -20,6 +20,8 @@ import javafx.scene.shape.HLineTo;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 
 public class Level {
@@ -349,10 +351,10 @@ public class Level {
                     animation = true;
                 }
             });
-
             pathTransition.play();
-            // pathTransition.getOnFinished();
-
+            Text gameOverText = new Text();
+            gameOverText.setTextAlignment(TextAlignment.CENTER);
+            gameOverText.setText("You Won! CONGRATILATIONS!!");
         } else {
             // clear circle road which in pane
             path.getElements().clear();

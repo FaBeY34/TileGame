@@ -2,6 +2,7 @@ import java.io.Serializable;
 import javafx.scene.layout.StackPane;
 
 public class CellProperties extends StackPane implements Serializable {
+    public static final long serialVersionUID = 1L;
     private int cellId;
     private String type;
     private String property;

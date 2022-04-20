@@ -93,7 +93,7 @@ public class Game extends Application {
             // level5
             Level level5 = new Level(5);
             BorderPane bp5 = new BorderPane();
-            Button button5 = new Button("Next Level");
+            Button button5 = new Button("Go To Last Level");
             button5.setDisable(true);
             Label score5 = new Label();
             bp5.setCenter(level5.getLevel());
@@ -108,19 +108,12 @@ public class Game extends Application {
             // level6
             Level level6 = new Level(6);
             BorderPane bp6 = new BorderPane();
-            Button button6 = new Button("Next Level");
-            button6.setDisable(true);
             Label score6 = new Label();
             bp6.setCenter(level6.getLevel());
             bp6.setLeft(score6);
-            bp6.setRight(button6);
             BorderPane.setAlignment(score6, Pos.CENTER_LEFT);
-            BorderPane.setAlignment(button6, Pos.CENTER_RIGHT);
             BorderPane.setMargin(level6.getLevel(), new Insets(12));
             BorderPane.setMargin(score6, new Insets(12));
-            BorderPane.setMargin(button6, new Insets(12));
-            Text gameOverText = new Text();
-            gameOverText.setText("YOU WON! CONGRATILATIONS!!");
 
             stage.setTitle("Pipe Game");
             stage.setScene(scene);
@@ -175,7 +168,7 @@ public class Game extends Application {
             });
 
             button4.setOnAction(e -> {
-                stage.setScene(new Scene(bp4, 800, 450));
+                stage.setScene(new Scene(bp5, 800, 450));
             });
 
             // level5 events
@@ -187,7 +180,7 @@ public class Game extends Application {
             });
 
             button5.setOnAction(e -> {
-                stage.setScene(new Scene(bp5, 800, 450));
+                stage.setScene(new Scene(bp6, 800, 450));
             });
 
             // level6 events
