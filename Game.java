@@ -6,8 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
@@ -15,39 +15,22 @@ import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class Game extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
     @Override
     public void start(Stage stage) throws Exception {
         try {
             // starter menu
             StackPane starterMenu = new StackPane();
-
             Button playButton = new Button("",
                     new ImageView(new Image("./projectImages/playButton.png", 300, 200, true, true)));
             starterMenu.getChildren().add(playButton);
-            Scene scene = new Scene(starterMenu, playButton.getWidth(), playButton.getHeight());
-            // Text introText = new Text();
-            // introText.setText("Welcome To Plumber Game");
-            // introText.setFont(Font.font("Times New Roman",31));
-            // introText.setTextAlignment(TextAlignment.CENTER);
-
-            // Button playButton = new Button("", new ImageView(new
-            // Image("./projectImages/playButton.png")));
-            // playButton.setScaleX(0.05);
-            // playButton.setScaleY(0.03);
-
-            // root.getChildren().add(introText);
-            // root.getChildren().add(playButton);
-            scene.setFill(new LinearGradient(0, 0, 1, 1, true, CycleMethod.NO_CYCLE, new Stop(0, Color.web("#99ffad")),
-                    new Stop(1, Color.web("#0099e6"))));
-
-            // constructing level1
+            Scene scene = new Scene(starterMenu, 800, 450);
+     
+            // level1
             Level level1 = new Level(1);
             BorderPane bp1 = new BorderPane();
             Button button1 = new Button("Next Level");
@@ -62,7 +45,7 @@ public class Game extends Application {
             BorderPane.setMargin(score1, new Insets(12));
             BorderPane.setMargin(button1, new Insets(12));
 
-            // constructing level2
+            // level2
             Level level2 = new Level(2);
             BorderPane bp2 = new BorderPane();
             Button button2 = new Button("Next Level");
@@ -77,7 +60,7 @@ public class Game extends Application {
             BorderPane.setMargin(score2, new Insets(12));
             BorderPane.setMargin(button2, new Insets(12));
 
-            // constructing level3
+            // level3
             Level level3 = new Level(3);
             BorderPane bp3 = new BorderPane();
             Button button3 = new Button("Next Level");
@@ -92,7 +75,7 @@ public class Game extends Application {
             BorderPane.setMargin(score3, new Insets(12));
             BorderPane.setMargin(button3, new Insets(12));
 
-            // constructing level4
+            // level4
             Level level4 = new Level(4);
             BorderPane bp4 = new BorderPane();
             Button button4 = new Button("Next Level");
@@ -107,7 +90,7 @@ public class Game extends Application {
             BorderPane.setMargin(score4, new Insets(12));
             BorderPane.setMargin(button4, new Insets(12));
 
-            // constructing level5
+            // level5
             Level level5 = new Level(5);
             BorderPane bp5 = new BorderPane();
             Button button5 = new Button("Next Level");
@@ -122,7 +105,7 @@ public class Game extends Application {
             BorderPane.setMargin(score5, new Insets(12));
             BorderPane.setMargin(button5, new Insets(12));
 
-            // constructing level6
+            // level6
             Level level6 = new Level(6);
             BorderPane bp6 = new BorderPane();
             Button button6 = new Button("Next Level");
@@ -156,7 +139,7 @@ public class Game extends Application {
             });
 
             button1.setOnAction(e -> {
-                stage.setScene(new Scene(bp2, 1300, 650));
+                stage.setScene(new Scene(bp2, 800, 450));
             });
 
             // level2 events
@@ -168,7 +151,7 @@ public class Game extends Application {
             });
 
             button2.setOnAction(e -> {
-                stage.setScene(new Scene(bp3, 1300, 650));
+                stage.setScene(new Scene(bp3, 800, 450));
             });
 
             // level3 events
@@ -180,7 +163,7 @@ public class Game extends Application {
             });
 
             button3.setOnAction(e -> {
-                stage.setScene(new Scene(bp4, 1300, 650));
+                stage.setScene(new Scene(bp4, 800, 450));
             });
 
             // level4 events
@@ -192,7 +175,7 @@ public class Game extends Application {
             });
 
             button4.setOnAction(e -> {
-                stage.setScene(new Scene(bp4, 1300, 650));
+                stage.setScene(new Scene(bp4, 800, 450));
             });
 
             // level5 events
@@ -204,14 +187,13 @@ public class Game extends Application {
             });
 
             button5.setOnAction(e -> {
-                stage.setScene(new Scene(bp5, 1300, 650));
+                stage.setScene(new Scene(bp5, 800, 450));
             });
 
             // level6 events
             bp6.setOnMouseMoved(e -> {
                 score6.setText("Number Of Moves: " + level6.getCounter());
             });
-
             stage.show();
 
         } catch (Exception e) {

@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import javafx.scene.layout.StackPane;
 
-public class CellProperties extends StackPane {
+public class CellProperties extends StackPane implements Serializable {
     private int cellId;
     private String type;
     private String property;
