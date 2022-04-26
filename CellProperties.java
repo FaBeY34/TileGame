@@ -12,7 +12,7 @@ public class CellProperties extends StackPane implements Serializable {
         this.type = type;
         this.property = property;
     }
-
+    
     public int getCellId() {
         return this.cellId;
     }
