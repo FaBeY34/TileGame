@@ -313,42 +313,42 @@ public class Level {
         return level;
     }
 
-    private void dragDetected(MouseEvent e, CellProperties item) {
+    private void dragDetected(MouseEvent e, CellProperties cell) {
         // onlineY empty and pipe cells can move
-        if (!((CellProperties) item).getType().equals("Starter") && !((CellProperties) item).getType().equals("End")
-                && !((CellProperties) item).getType().equals("PipeStatic")
-                && !((CellProperties) item).getProperty().equals("Free")
+        if (!((CellProperties) cell).getType().equals("Starter") && !((CellProperties) cell).getType().equals("End")
+                && !((CellProperties) cell).getType().equals("PipeStatic")
+                && !((CellProperties) cell).getProperty().equals("Free")
                 && !isLevelCompleted) {
-            Dragboard dragBoard = item.startDragAndDrop(TransferMode.ANY);
+            Dragboard dragBoard = cell.startDragAndDrop(TransferMode.ANY);
             ClipboardContent content = new ClipboardContent();
-            content.put(cellPanes, (CellProperties) item);
+            content.put(cellPanes, (CellProperties) cell);
             dragBoard.setContent(content);
-            draggingCell = (CellProperties) item;
+            draggingCell = (CellProperties) cell;
         } else {
             e.consume();
         }
     }
 
-    private void dragOver(DragEvent e, CellProperties item) {
+    private void dragOver(DragEvent e, CellProperties cell) {
         Dragboard dragBoard = e.getDragboard();
         // cells can onlineY move to free spaces and to left, right, down or up, not
         // diagonal
-        if (e.getGestureSource() != (CellProperties) item && dragBoard.hasContent(cellPanes)
-                && ((CellProperties) item).getProperty().equals("Free")
-                && (((CellProperties) item).getCellId() == draggingCell.getCellId() + 1
-                        || ((CellProperties) item).getCellId() == draggingCell.getCellId() - 1
-                        || ((CellProperties) item).getCellId() == draggingCell.getCellId() + 4
-                        || ((CellProperties) item).getCellId() == draggingCell.getCellId() - 4)) {
+        if (e.getGestureSource() != (CellProperties) cell && dragBoard.hasContent(cellPanes)
+                && ((CellProperties) cell).getProperty().equals("Free")
+                && (((CellProperties) cell).getCellId() == draggingCell.getCellId() + 1
+                        || ((CellProperties) cell).getCellId() == draggingCell.getCellId() - 1
+                        || ((CellProperties) cell).getCellId() == draggingCell.getCellId() + 4
+                        || ((CellProperties) cell).getCellId() == draggingCell.getCellId() - 4)) {
             e.acceptTransferModes(TransferMode.ANY);
         } else {
             e.consume();
         }
     }
 
-    private void dragDropped(DragEvent e, CellProperties item) {
+    private void dragDropped(DragEvent e, CellProperties cell) {
         boolean dragCompleted = false;
         Dragboard dragBoard = e.getDragboard();
-        targetCell = (CellProperties) item;
+        targetCell = (CellProperties) cell;
 
         // if target cell is valid swap cells
         if (dragBoard.hasContent(cellPanes) && !(targetCell.getType().equals("Starter"))
@@ -409,10 +409,10 @@ public class Level {
     }
 
     public void levelEvents() {
-        getLevel().getChildren().forEach(item -> item.setOnDragDetected(e -> dragDetected(e, (CellProperties) item)));
-        getLevel().getChildren().forEach(item -> item.setOnDragOver(e -> dragOver(e, (CellProperties) item)));
-        getLevel().getChildren().forEach(item -> item.setOnDragDropped(e -> dragDropped(e, (CellProperties) item)));
-        getLevel().getChildren().forEach(item -> item.setOnDragDone(e -> dragDone(e)));
+        getLevel().getChildren().forEach(cell -> cell.setOnDragDetected(e -> dragDetected(e, (CellProperties) cell)));
+        getLevel().getChildren().forEach(cell -> cell.setOnDragOver(e -> dragOver(e, (CellProperties) cell)));
+        getLevel().getChildren().forEach(cell -> cell.setOnDragDropped(e -> dragDropped(e, (CellProperties) cell)));
+        getLevel().getChildren().forEach(cell -> cell.setOnDragDone(e -> dragDone(e)));
     }
 
     // find cell with specific cell id
