@@ -369,7 +369,7 @@ public class Level {
         e.consume();
     }
 
-    private void dragDone(DragEvent e, CellProperties item) {
+    private void dragDone(DragEvent e) {
         System.out.println(counter);
         // after each move control to is the level completed
         comeFromCell = null;
@@ -412,7 +412,7 @@ public class Level {
         getLevel().getChildren().forEach(item -> item.setOnDragDetected(e -> dragDetected(e, (CellProperties) item)));
         getLevel().getChildren().forEach(item -> item.setOnDragOver(e -> dragOver(e, (CellProperties) item)));
         getLevel().getChildren().forEach(item -> item.setOnDragDropped(e -> dragDropped(e, (CellProperties) item)));
-        getLevel().getChildren().forEach(item -> item.setOnDragDone(e -> dragDone(e, (CellProperties) item)));
+        getLevel().getChildren().forEach(item -> item.setOnDragDone(e -> dragDone(e)));
     }
 
     // find cell with specific cell id
