@@ -48,7 +48,7 @@ public class Level {
     private int lY;
     private int hlX;
 
-    //ctor
+    // ctor
     public Level(int levelNumber) throws Exception {
         this.levelNumber = levelNumber;
         level = new GridPane();
@@ -177,7 +177,7 @@ public class Level {
     public void setIsLevelCompleted(boolean isLevelCompleted) {
         this.isLevelCompleted = isLevelCompleted;
     }
-    
+
     public static DataFormat getCellpanes() {
         return cellPanes;
     }
@@ -1206,7 +1206,6 @@ public class Level {
                                 path.getElements().add(new LineTo(lX, lY));
                                 path.getElements().add(new HLineTo(-50));
                                 lX -= 50;
-
                             }
                             if (movingToCell.getProperty().equals("11") && path != null) {
                                 mX -= 50;
@@ -1226,7 +1225,6 @@ public class Level {
                                     lY -= 100;
                                     path.getElements().add(new MoveTo(mX, mY));
                                     path.getElements().add(new LineTo(lX, lY));
-
                                 }
                                 if (movingToCell.getType().equals("End")) {
                                     mX -= 50;
@@ -1234,7 +1232,6 @@ public class Level {
                                     lY -= 35;
                                     path.getElements().add(new MoveTo(mX, mY));
                                     path.getElements().add(new LineTo(lX, lY));
-
                                 }
                             }
                         } else {

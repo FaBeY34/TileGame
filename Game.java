@@ -14,6 +14,7 @@ public class Game extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
     @Override
     public void start(Stage stage) throws Exception {
         try {
@@ -23,7 +24,7 @@ public class Game extends Application {
                     new ImageView(new Image("./projectImages/playButton.png", 300, 200, true, true)));
             starterMenu.getChildren().add(playButton);
             Scene scene = new Scene(starterMenu, 800, 450);
-     
+
             // level1
             Level level1 = new Level(1);
             BorderPane bp1 = new BorderPane();
