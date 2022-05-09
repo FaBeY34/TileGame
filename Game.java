@@ -116,7 +116,7 @@ public class Game extends Application {
             BorderPane.setMargin(level6.getLevel(), new Insets(12));
             BorderPane.setMargin(score6, new Insets(12));
 
-            stage.setTitle("Pipe Game");
+            stage.setTitle("Tile Game");
             stage.setScene(scene);
 
             // play button
