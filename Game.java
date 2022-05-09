@@ -1,3 +1,9 @@
+
+/*
+ * Feyzullah Asıllıoğlu  150121021
+ * Kadir Bat  150120012
+ */
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -25,7 +31,7 @@ public class Game extends Application {
             starterMenu.getChildren().add(playButton);
             Scene scene = new Scene(starterMenu, 800, 450);
 
-            // level1
+            // generating level1
             Level level1 = new Level(1);
             BorderPane bp1 = new BorderPane();
             Button button1 = new Button("Next Level");
@@ -40,7 +46,7 @@ public class Game extends Application {
             BorderPane.setMargin(score1, new Insets(12));
             BorderPane.setMargin(button1, new Insets(12));
 
-            // level2
+            // generating level2
             Level level2 = new Level(2);
             BorderPane bp2 = new BorderPane();
             Button button2 = new Button("Next Level");
@@ -55,7 +61,7 @@ public class Game extends Application {
             BorderPane.setMargin(score2, new Insets(12));
             BorderPane.setMargin(button2, new Insets(12));
 
-            // level3
+            // generating level3
             Level level3 = new Level(3);
             BorderPane bp3 = new BorderPane();
             Button button3 = new Button("Next Level");
@@ -70,7 +76,7 @@ public class Game extends Application {
             BorderPane.setMargin(score3, new Insets(12));
             BorderPane.setMargin(button3, new Insets(12));
 
-            // level4
+            // generating level4
             Level level4 = new Level(4);
             BorderPane bp4 = new BorderPane();
             Button button4 = new Button("Next Level");
@@ -85,7 +91,7 @@ public class Game extends Application {
             BorderPane.setMargin(score4, new Insets(12));
             BorderPane.setMargin(button4, new Insets(12));
 
-            // level5
+            // generating level5
             Level level5 = new Level(5);
             BorderPane bp5 = new BorderPane();
             Button button5 = new Button("Go To Last Level");
@@ -100,7 +106,7 @@ public class Game extends Application {
             BorderPane.setMargin(score5, new Insets(12));
             BorderPane.setMargin(button5, new Insets(12));
 
-            // level6
+            // generating level6
             Level level6 = new Level(6);
             BorderPane bp6 = new BorderPane();
             Label score6 = new Label();
